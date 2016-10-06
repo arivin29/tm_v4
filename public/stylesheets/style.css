@@ -1,0 +1,149 @@
+body {
+  padding: 50px;
+  overflow: hidden;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #dfdfdf;
+}
+
+.container {
+    background: #fff none repeat scroll 0 0;
+    padding: 20px;
+    width: 100%;
+}
+
+li .row-content {
+    background: whitesmoke none repeat scroll 0 0;
+    display: inline-block;
+    padding: 2px 0 4px 4px;
+    width: calc(100% - 100px);
+}
+li .row-action-primary {
+    display: inline-block;
+    padding-right: 10px;
+}
+ul.listKapalTimbang  {
+    padding: 0;
+}
+ul.listKapalTimbang li {
+    list-style: outside none none;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+li .least-content {
+    position: absolute;
+    right: 10px;
+}
+ul.listKapalTimbang li i {
+    font-size: 40px !important;
+    color: sandybrown;
+}
+#listKapalTimbang{
+    overflow-x: hidden;
+     background: steelblue none repeat;
+}
+
+.list-group-item {
+    background-color: #eeeeee;
+    border-color: #fff;
+    border-image: none;
+    border-radius: 0 !important;
+    border-style: none none solid;
+    border-width: 0;
+    cursor: pointer;
+    display: block;
+    margin-bottom: -1px;
+    padding: 0 2px;
+    position: relative;
+}
+.list-group-item-heading {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+li .list-group-item:hover, li .list-group-item:active {
+    background-color: #f1f1f1;
+}
+#kanan_layar {
+    border-left: 4px solid;
+}
+
+h2 {
+    margin-top: 0;
+    background: tomato none repeat scroll 0 0;
+    color: #fff;
+    padding: 10px 13px;
+    margin: 0;
+}
+#beratTimbangan {
+    background: #f1f1f1 none repeat scroll 0 0;
+    border-bottom: 3px solid;
+    color: red;
+    font-size: 100px;
+    font-weight: bold;
+    margin: 0;
+    padding: 5px;
+    text-align: right;
+}
+td {
+    text-transform: uppercase;
+}
+
+@media (max-width: 1400px) {
+    h2{
+        font-size: 24px !important;
+    }
+
+    #beratTimbangan {
+        background: #f1f1f1 none repeat scroll 0 0;
+        border-bottom: 3px solid;
+        color: red;
+        font-size: 70px;
+        font-weight: bold;
+        margin: 0;
+        padding: 5px;
+        text-align: right;
+    }
+    .kontenKiri img {
+        padding: 10px 40px 0;
+    }
+
+    .table-responsive {
+        font-size: 12px;
+    }
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+.row{
+    margin: 0!important;
+}
+.container{
+    padding: 0!important;
+}
+.table {
+    margin: 0;
+}
+
+#data-info table{
+    background: lightslategrey none repeat scroll 0 0;
+}
+
+.reltimbang label {
+    color: black;
+    font-size: 20px;
+    font-style: italic;
+    padding: 6px 6px 6px 10px;
+}
+
+
+.list-group .list-group-item .row-content {
+    display: inline-block;
+    min-height: 66px;
+    width: 100%;
+}
+.list-group .list-group-item {
+    border-bottom: 3px solid orangered !important;
+}

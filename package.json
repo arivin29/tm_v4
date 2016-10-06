@@ -1,0 +1,40 @@
+{
+  "name": "MyApp",
+  "productName": "MyApp",
+  "version": "1.0.0",
+  "description": "sad asd asdasd ",
+  "main": "main.js",
+  "author": "arifin <arivin29@devetek.com>",
+
+  "build": {
+    "appId": "your.id",
+    "category": "your.app.category.type",
+    "squirrelWindows":{
+        "iconUrl":"https://github.com/arivin29/lcd/blob/master/icon.ico"
+    },
+    "directories":"MyApp"
+},
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager .  MyApp  --version=1.4.0 --arch=ia32 --platform=win32 build-version=1.1 --overwrite  --ignore=MyApp.app"
+  },
+  "homepage": "https://github.com/electron/electron-quick-start#readme",
+  "dependencies": {
+    "ejs": "^2.5.2",
+    "moment": "2.15.1",
+    "express": "4.14.0",
+    "sql.js" : "0.3.2",
+    "socket.io" : "1.4.8"
+},
+"devDependencies": {
+    "ejs": "2.5.2",
+    "moment": "2.15.1",
+    "express": "4.14.0",
+    "sql.js" : "0.3.2",
+    "socket.io" : "1.4.8",
+    "electron": "1.4.0",
+    "electron-builder":"7.9.0",
+    "electron-packager": "8.0.0",
+    "electron-prebuilt": "1.4.0"
+}
+}
