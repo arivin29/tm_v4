@@ -7,11 +7,15 @@ const  fs = require('fs');
 const  sql = require('sql.js');
 const  filebuffer = fs.readFileSync('test.sqlite');
 
+const  printer = require('printer'),util = require('util');;
+
 
 const  db = new sql.Database(filebuffer);
 
 app.set('views', './views'); // specify the views directory
 app.set('view engine', 'ejs');
+
+console.log("installed printers:\n"+util.inspect(printer.getPrinters(), {colors:true, depth:10}));
 
 //=======================
 //soket.io
@@ -20,7 +24,6 @@ const  io = require('socket.io').listen(app.listen(5000));
 io.sockets.on('connection', function (socket) {
     socket.emit('message', {bt:'-00'});
     socket.emit('message','10');
-
         console.log('Client connected...');
     //socket.emit('message');
     socket.on('send', function (data) {
@@ -29,12 +32,13 @@ io.sockets.on('connection', function (socket) {
 
         if(data.key_unik)
         {
-            db.run("INSERT INTO db_kapal VALUES (?,?,?,?,?,?)", [data.id_kapal,data.no_induk,data.no_izin,data.nama_kapal,data.alat_tangkap,data.key_unik]);
+            db.run("INSERT INTO db_kapal VALUES (?,?,?,?,?,?,?)", [data.id_kapal,data.no_induk,data.no_izin,data.nama_kapal,data.alat_tangkap,data.key_unik,data.pemilik]);
             console.log("berhasil input db");
         }
 
-        if(data.berat)
+        if(data.keyUnik)
         {
+            console.log("persiapan input db");
             db.run("INSERT INTO db_timbang VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [data.id_kapal , data.berat , data.id_user , data.nama_ikan , data.status_timbang , data.tanggal_timbang ,data.satuan , data.id_ikan , data.id_timbang , data.upi , data.faktor_a , data.faktor_b , data.id_timbang_detail , data.harga , data.keyUnik])
             console.log("berhasil input db");
         }
@@ -45,7 +49,7 @@ io.sockets.on('connection', function (socket) {
             kapal = data.list_kapal;
             for(i=0; i < data.list_kapal.length ; i++)
             {
-                db.run("INSERT INTO db_kapal VALUES (?,?,?,?,?,?)", [kapal[i].id_kapal,kapal[i].no_induk,kapal[i].no_izin,kapal[i].nama_kapal,kapal[i].alat_tangkap,kapal[i].key_unik]);
+                db.run("INSERT INTO db_kapal VALUES (?,?,?,?,?,?,?)", [kapal[i].id_kapal,kapal[i].no_induk,kapal[i].no_izin,kapal[i].nama_kapal,kapal[i].alat_tangkap,kapal[i].key_unik],kapal[i].pemilik);
             }
             console.log("berhasil simpan " + kapal.length );
         }
@@ -71,7 +75,7 @@ io.sockets.on('connection', function (socket) {
 
 
 // Execute some sql db_kapal
-sqlstr = "CREATE TABLE db_kapal (id_kapal int, no_induk char, no_izin char,nama_kapal char,alat_tangkap char, key_unik char );";
+sqlstr = "CREATE TABLE db_kapal (id_kapal int, no_induk char, no_izin char,nama_kapal char,alat_tangkap char, key_unik char,pemilik );";
 db.run(sqlstr); // Run the query without returning anything
 
 
@@ -92,7 +96,7 @@ app.use(express.static('public'));
 
 app.listen(3000, "0.0.0.0");
 electron.app.on("ready", function () {
-  var main = new electron.BrowserWindow({fullscreen:true});
+  var main = new electron.BrowserWindow({fullscreen:false});
   main.on("closed", electron.app.quit);
   main.webContents.openDevTools();
   main.loadURL("http://127.0.0.1:3000/");

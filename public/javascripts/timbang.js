@@ -5,6 +5,7 @@ var url = "http://localhost:3000";
 window.onload = function() {
      var socket = io.connect('http://localhost:5000');
      socket.on('message',function(data){
+       console.log(data);
          if(data.bt)
          {
              $('#beratTimbangan').html(Math.round(data.bt));
@@ -22,6 +23,8 @@ window.onload = function() {
               $('#id_perusahaan').html("data.alat_tangkap");
               console.log("asdas");
 
+                $('ul#kapalList li').removeClass("active");
+
               //doom ka list
               if(id_kapal != data.id_kapal)
               {
@@ -29,7 +32,7 @@ window.onload = function() {
                   html='<li class="list-group-item no-padding" val=' + data.id_kapal +'>';
 
                       html+='<div class="row-content">';
-                          html+='<div class="least-content">01:00 12/09/2016</div>';
+                          html+='<div class="least-content">'+data.pemilik+'</div>';
                           html+='<h4 class="list-group-item-heading">'+data.nama_kapal+'</h4>';
 
                           html+='<p class="list-group-item-text">UPI:'+data.no_izin+' ('+data.alat_tangkap+')</p>';
@@ -56,7 +59,7 @@ window.onload = function() {
                  html='<li class="list-group-item no-padding" val=' + kapal[i].key_unik +'>';
 
                      html+='<div class="row-content">';
-                         html+='<div class="least-content">01:00 12/09/2016</div>';
+                         html+='<div class="least-content">'+ kapal[i].pemilik +'</div>';
                          html+='<h4 class="list-group-item-heading">'+kapal[i].nama_kapal+'</h4>';
 
                          html+='<p class="list-group-item-text">UPI:'+kapal[i].no_izin+' ('+ kapal[i].alat_tangkap+')</p>';
@@ -72,32 +75,32 @@ window.onload = function() {
 
          if(data.keyUnik)
          {
+           html='<li>';
+                  html+='<div class="list-group-item">';
+                     html+='<div class="row-action-primary">';
+                         html+='<img src="images/fish.png"">';
+                     html+='</div>';
+                     html+='<div class="row-content">';
+                         html+='<div class="least-content">'+ data.berat +' kg</div>';
+                         html+='<div class="least-content total">Print</div>';
+                         html+='<h4 class="list-group-item-heading">'+ data.nama_ikan +'</h4>';
 
-              console.log("asdassssssssssss");
+                         html+='<p class="list-group-item-text">'+ data.tanggal_timbang +'</p>';
+                     html+='</div>';
+                 html+='</div>';
+              html+='</li>';
 
-              //doom ka list
-            //   if(id_kapal != data.id_kapal)
-            //   {
-                  html='<li>';
-                         html+='<div class="list-group-item">';
-                            html+='<div class="row-action-primary">';
-                                html+='<i class="material-icons">folder</i>';
-                            html+='</div>';
-                            html+='<div class="row-content">';
-                                html+='<div class="least-content">820 kg</div>';
-                                html+='<h4 class="list-group-item-heading">KAKAP MERAH</h4>';
+                $('ul.listKapalTimbang li:first-child').before(html);
 
-                                html+='<p class="list-group-item-text">15:00/12/09/2016 | 14 kali timbang</p>';
-                            html+='</div>';
-                        html+='</div>';
-                     html+='</li>';
-
-                  $('ul.listKapalTimbang li:first-child').before(html);
-              //}
+                //update detail timbang
+                $('#faktor_a').html(data.faktor_a);
+                $('#faktor_b').html(data.faktor_b);
+                $('#nama_ikan').html(data.nama_ikan);
+                $('#harga_ikan').html(data.harga_ikan);
 
 
          }
- 
+
 
 
      });

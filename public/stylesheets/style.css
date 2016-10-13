@@ -14,8 +14,11 @@ body {
 li .row-content {
     background: whitesmoke none repeat scroll 0 0;
     display: inline-block;
-    padding: 2px 0 4px 4px;
+    padding: 2px 0 15px 4px;
     width: calc(100% - 100px);
+}
+.least-content.total {
+    bottom: 10px;
 }
 li .row-action-primary {
     display: inline-block;
@@ -90,7 +93,15 @@ td {
     text-transform: uppercase;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1300px) {
+    body{
+        padding: 1px;
+    }
+
+    .kontenKiri img {
+        padding: 0 4px;
+    }
+
     h2{
         font-size: 24px !important;
     }
@@ -114,6 +125,11 @@ td {
     }
 }
 
+.table-responsive.detail-kapal {
+    color: salmon;
+    font-size: 23px;
+}
+
 .no-padding {
     padding: 0 !important;
 }
@@ -127,8 +143,8 @@ td {
     margin: 0;
 }
 
-#data-info table{
-    background: lightslategrey none repeat scroll 0 0;
+#data-info table {
+    background: #fff none repeat scroll 0 0;
 }
 
 .reltimbang label {
@@ -146,4 +162,19 @@ td {
 }
 .list-group .list-group-item {
     border-bottom: 3px solid orangered !important;
+}
+
+#data-info {
+    background: darkgrey none repeat scroll 0 0;
+    padding: 10px;
+}
+
+.list-group .list-group-item .row-content {
+    display: inline-block;
+    min-height: 66px;
+    width: 100%;
+}
+
+.row-action-primary > img {
+    width: 40px;
 }
